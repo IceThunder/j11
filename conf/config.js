@@ -18,9 +18,6 @@ var controllers = {
   }
 },
 server = {
-  server:"localhost",
-  port:27017,
-  dbname: "j11p",
   url:"mongodb://localhost:27017/j11p",
   serverOptions: {
     auto_reconnect:false,
