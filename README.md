@@ -33,10 +33,16 @@ this is controller can save key, you can add key to json, and every key have val
 
 ## About Server API
 * http://localhost/`controller name`
+```
 method = post
 insert data to mongodb,collection name is controllers setting - collection name, please refer controllers setting input allow key to save.
+```
 * http://localhost/`controller name`/id
+```
 method = post
 update data to mongodb, `id` is same to input id, if you not set id on insert, you can't find it and can't update it.
+```
+```
 method = get
 find data from mongodb, `id` is same to input id, if you not set id on insert, you can't find it and can't update it.
+```
