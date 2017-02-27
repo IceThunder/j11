@@ -2,18 +2,18 @@
 nodejs &amp; mongodb simple blogic api server
 
 ## init project
-please make sure your software version
+Please make sure your software version
 * npm >= 3.10
 * node >= 6.9
 * mongodb >= 2.6
 
-enter j11 folder, and run
+Enter j11 folder, and run
 * npm install --production
 
-## config.js
+## About config.js
 This is controllers and server config.
 you can set mongodb server info in server json string.
-### About controllers
+### About controllers setting
 `controller name`: {
   `collection name`: "users",
   `input`: {
@@ -30,3 +30,13 @@ http://localhost/`controller name`
 this is collection name in mongodb.
 * input:
 this is controller can save key, you can add key to json, and every key have value(1 : must input, 0 : can input).
+
+## About Server API
+* http://localhost/`controller name`
+method = post
+insert data to mongodb,collection name is controllers setting - collection name, please refer controllers setting input allow key to save.
+* http://localhost/`controller name`/id
+method = post
+update data to mongodb, `id` is same to input id, if you not set id on insert, you can't find it and can't update it.
+method = get
+find data from mongodb, `id` is same to input id, if you not set id on insert, you can't find it and can't update it.
