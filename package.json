@@ -4,7 +4,7 @@
   "description": "j11 project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "j11"
@@ -13,10 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.1",
+    "crypto": "0.0.3",
     "express": "^4.14.1",
     "mongodb": "^2.2.24"
-  },
-  "scripts": {
-    "start": "node index.js"
   }
 }

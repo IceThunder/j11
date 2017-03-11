@@ -1,29 +1,33 @@
 var controllers = {
-  user: {
-    db: "users",
+  image: {
+    db: "images",
+    auth: "",
     input: {
-      "id": 1,
-      "name": 1,
-      "phone": 1,
-      "sex": 0
+      "userid": 0,
+      "url": 0,
+      "delete": 0
     }
   },
   order: {
     db: "orders",
+    auth: "",
     input: {
-      "id": 1,
       "price": 1,
       "remark": 0
     }
   }
 },
 server = {
-  url:"mongodb://localhost:27017/j11p",
-  serverOptions: {
+  dbUrl:"mongodb://localhost:27017/j11p",
+  dbServerOptions: {
     auto_reconnect:false,
     poolSize:100
   }
+},
+system = {
+  secret:"abcdefg"
 };
 
 module.exports.controllers = controllers;
 module.exports.server = server;
+module.exports.system = system;

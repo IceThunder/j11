@@ -1,12 +1,6 @@
 var config = require('../conf/config').controllers;
 
 module.exports.check = function(req, callback) {
-  if(typeof(req.params.id) != "undefined"){
-    if(req.params.id != req.body.id) {
-      callback("id error");
-      return;
-    }
-  }
   // get values with allow save
   var mybody = {};
   for(var item in config[req.params.controller].input){
@@ -16,7 +10,9 @@ module.exports.check = function(req, callback) {
         return;
       }
     }
-    mybody[item]=req.body[item];
+    if(req.body[item]!=null && req.body[item] != "" && req.body[item] != "undefined"){
+      mybody[item]=req.body[item];
+    }
   }
   return mybody;
 };
