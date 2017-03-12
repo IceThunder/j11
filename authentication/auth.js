@@ -3,6 +3,7 @@ var auth = {
   auth_register : "register",
   auth_update : "update",
   auth_info : "info",
+  auth_pwd : "pwd",
   auth_oauth : "oauth"
 };
 

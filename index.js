@@ -2,6 +2,7 @@ var express = require('express');
 var parser = require('body-parser');
 var oauth = require('./authentication/index');
 var config = require('./conf/config').controllers;
+var system = require('./conf/config').system;
 var filter = require('./framework/filter');
 var inputcheck = require('./framework/inputcheck');
 var db = require('./data/db/index');
@@ -11,6 +12,8 @@ app.use('/', parser.json());
 app.use('/', parser.urlencoded({extended: true}));
 
 app.post('/auth/:controller', oauth.verify);
+
+app.use('/list/:controller', filter.lists);
 
 app.post('/list/:controller', function(req, res) {
   if(req.body == {}){
@@ -22,8 +25,15 @@ app.post('/list/:controller', function(req, res) {
 });
 
 app.use('/:controller', filter.controllers);
+app.use('/:controller', oauth.loginstate);
 
 app.get('/:controller/:id', function(req, res) {
+  db.mongofind(config[req.params.controller].db, {"id": +req.params.id}, function(result){
+    res.send(result);
+  });
+});
+
+app.post('/:controller/:id', function(req, res) {
   db.mongofind(config[req.params.controller].db, {"id": +req.params.id}, function(result){
     res.send(result);
   });
@@ -51,6 +61,6 @@ app.post('/:controller/:id', function(req, res) {
   }
 });
 
-app.listen(3000, function() {
-  console.log('Listening on port 3000');
+app.listen(system.port, function() {
+  console.log('Listening on port ' + system.port);
 });
