@@ -14,12 +14,21 @@ app.use('/', parser.urlencoded({extended: true}));
 app.post('/auth/:controller', oauth.verify);
 
 app.use('/list/:controller', filter.lists);
+app.use('/list/:controller/：page', filter.lists);
 
 app.post('/list/:controller', function(req, res) {
   if(req.body == {}){
     res.send({"message":"bad request","code":"400","more":"must has condition"});
   }
-  db.mongoquery(config[req.params.controller].db, req.body, function(result){
+  db.mongoquery(config[req.params.controller].db, req.body, 1, function(result){
+    res.send(result);
+  });
+});
+app.post('/list/:controller/:page', function(req, res) {
+  if(req.body == {}){
+    res.send({"message":"bad request","code":"400","more":"must has condition"});
+  }
+  db.mongoquery(config[req.params.controller].db, req.body, req.params.page, function(result){
     res.send(result);
   });
 });

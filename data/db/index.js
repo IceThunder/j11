@@ -119,7 +119,7 @@ function mongoupdate(name, search, value, callback){
   });
 };
 
-function mongoquery(name, search, callback) {
+function mongoquery(name, search, page, callback) {
   console.log("[INFO][" + "mongoquery" + "]Start[" + name + "," + search + "]");
   mongoc.connect(config.dbUrl, function(err, db){
     if(err) {
@@ -130,7 +130,7 @@ function mongoquery(name, search, callback) {
       if(search.hash!=null && search.hash != "" && search.hash != "undefined"){
         delete search.hash;
       }
-      db.collection(name).find(search, {"_id":0}).toArray(function(err, result){
+      db.collection(name).find(search, {"_id":0}).skip(5 * (page - 1)).limit(5).toArray(function(err, result){
         if(err) {
           console.log(err);
           return;

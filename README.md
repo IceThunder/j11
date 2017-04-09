@@ -69,7 +69,7 @@ Find data from mongodb, if you set `controller name.auth` = 0 then, you have to 
 Find data from mongodb, if you set `controller name.auth` = 1 then, you have to use this api to search, `id` is same to input id, if you not set id on insert, you can't find it and can't update it.
 
 * List
-* http://localhost/list/`controller name`/
+* http://localhost/list/`controller name`/`page`
 * Method: Post
 
 Query data from mongodb, if post parameter is null, you could receive error, please input query conditions, about allow input condition, please refer input config.js.
